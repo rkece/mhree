@@ -1,0 +1,10 @@
+{
+  "name": "birthday-scrapbook",
+  "private": true,
+  "version": "1.0.0",
+  "description": "An immersive, realistic 3D birthday surprise scrapbook website — 100% self-contained in a single index.html file with zero build step required.",
+  "scripts": {
+    "start": "npx serve .",
+    "serve": "python -m http.server 5173"
+  }
+}
