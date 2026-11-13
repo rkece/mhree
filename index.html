@@ -3022,11 +3022,11 @@
     }
 
     .poem-line {
-      font-style: italic;
-      font-family: Georgia, serif;
-      font-size: 1.04rem;
+      font-family: var(--font-family);
+      font-size: 1.02rem;
+      font-weight: 500;
       line-height: 1.75;
-      color: #480E24;
+      color: #38081A;
       margin-bottom: .45rem;
       padding-left: 1.2rem;
       position: relative
@@ -3570,10 +3570,10 @@
     /* =========================================================================
        LOTUS LETTER POPUP MODAL STYLES
        ========================================================================= */
-    .lotus-letter-dialog {
+    #lotus-letter-modal .lotus-letter-dialog {
       max-width: 680px;
       width: 100%;
-      background: linear-gradient(165deg, rgba(255, 248, 242, .98), rgba(245, 225, 215, .96));
+      background: linear-gradient(165deg, #FFFFFF 0%, #FFF8F4 100%);
       color: #2E0715;
       border: 2px solid var(--gold-primary);
       border-radius: 26px;
@@ -3583,6 +3583,16 @@
       overflow-y: auto;
       position: relative;
       text-align: left;
+    }
+
+    #lotus-letter-modal .modal-exit-btn {
+      background: rgba(56, 8, 26, .08);
+      color: #5A1228;
+    }
+
+    #lotus-letter-modal .modal-exit-btn:hover {
+      background: rgba(56, 8, 26, .16);
+      color: #2E0715;
     }
 
     .letter-filigree-top {
@@ -3613,29 +3623,50 @@
     }
 
     .letter-popup-content {
-      font-size: 1.02rem;
-      line-height: 1.75;
-      color: #380C1D;
+      font-family: var(--font-family);
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.78;
+      color: #38081A;
     }
 
     .letter-popup-para {
-      margin-bottom: 1.15rem;
+      font-family: var(--font-family);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #38081A;
+      margin-bottom: 1.2rem;
     }
 
     .letter-popup-para.lead {
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: #4A0C22;
+      font-family: var(--font-family);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #38081A;
     }
 
     .letter-popup-poem {
       position: relative;
       margin: 1.6rem 0;
       padding: 1.4rem 1.6rem;
-      background: rgba(232, 180, 160, .18);
-      border-left: 3px solid #D9485F;
-      border-radius: 0 16px 16px 0;
+      background: linear-gradient(145deg, #FFFDFB, #FDF0E9);
+      border: 1px solid rgba(217, 72, 95, .25);
+      border-left: 4px solid #D9485F;
+      border-radius: 16px;
       font-style: italic;
+      box-shadow: 0 6px 20px rgba(70, 14, 32, .06);
+    }
+
+    .poem-quote-mark {
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #D9485F;
+      opacity: .45;
+      font-family: Georgia, serif;
+    }
+
+    .poem-quote-mark.bottom {
+      text-align: right;
     }
 
     .letter-popup-signature {
@@ -3665,11 +3696,11 @@
     }
 
     /* =========================================================================
-       CHILDHOOD FLOATING GALLERY (IN FINALE)
+       CHILDHOOD DYNAMIC 3D ROTATING MEDIA CAROUSEL (IN FINALE)
        ========================================================================= */
     .childhood-floating-section {
       width: 100%;
-      max-width: 1240px;
+      max-width: 1200px;
       margin: 1.5rem auto 4.5rem;
       position: relative;
       z-index: 2;
@@ -3686,170 +3717,165 @@
       font-weight: 700;
       padding: .4rem 1.1rem;
       border-radius: 9999px;
-      margin-top: 1.2rem;
+      margin-top: .8rem;
       backdrop-filter: blur(8px);
     }
 
-    .childhood-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .childhood-card {
-      background: linear-gradient(155deg, rgba(62, 15, 34, .75), rgba(24, 6, 14, .88));
-      border: 1px solid rgba(232, 180, 160, .28);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, .55);
-      backdrop-filter: blur(12px);
-      cursor: pointer;
+    .childhood-3d-stage {
+      position: relative;
+      width: min(94vw, 880px);
+      height: 520px;
+      margin: 1rem auto 0;
+      perspective: 1400px;
       display: flex;
-      flex-direction: column;
-      transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s ease, border-color .3s;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      cursor: grab;
+      touch-action: pan-y;
     }
 
-    .childhood-card:hover {
-      transform: translateY(-10px) scale(1.025);
-      border-color: var(--gold-primary);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, .75), 0 0 35px rgba(232, 180, 160, .35);
+    .childhood-3d-stage:active {
+      cursor: grabbing;
     }
 
-    .float-card-1 {
-      animation: cardFloatA 5.5s ease-in-out infinite alternate;
-    }
-
-    .float-card-2 {
-      animation: cardFloatB 6.2s ease-in-out infinite alternate;
-      animation-delay: .4s;
-    }
-
-    .float-card-3 {
-      animation: cardFloatA 5.8s ease-in-out infinite alternate;
-      animation-delay: .8s;
-    }
-
-    .float-card-4 {
-      animation: cardFloatB 6.5s ease-in-out infinite alternate;
-      animation-delay: 1.2s;
-    }
-
-    @keyframes cardFloatA {
-      0% {
-        transform: translateY(0);
-      }
-
-      100% {
-        transform: translateY(-7px);
-      }
-    }
-
-    @keyframes cardFloatB {
-      0% {
-        transform: translateY(-4px);
-      }
-
-      100% {
-        transform: translateY(4px);
-      }
-    }
-
-    .childhood-card:hover {
-      animation-play-state: paused;
-    }
-
-    .childhood-img-wrap {
+    .childhood-3d-rig {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 4.7;
-      overflow: hidden;
-      background: #14040A;
+      height: 100%;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
-    .childhood-img {
+    .childhood-3d-slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(68vw, 340px);
+      aspect-ratio: 4 / 3.2;
+      margin-left: calc(min(68vw, 340px) * -0.5);
+      margin-top: calc(min(68vw, 340px) * 0.78 * -0.5);
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      background: #1A040C;
+      border: 2px solid rgba(232, 180, 160, .55);
+      box-shadow: 0 28px 65px rgba(0, 0, 0, .85), 0 0 35px rgba(232, 180, 160, .25);
+      user-select: none;
+      will-change: transform, opacity, filter;
+    }
+
+    .childhood-3d-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 22%;
       display: block;
-      transition: transform .6s cubic-bezier(.16, 1, .3, 1);
-    }
-
-    .childhood-card:hover .childhood-img {
-      transform: scale(1.06);
-    }
-
-    .childhood-card-aura {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(20, 4, 10, .85) 0%, transparent 40%);
       pointer-events: none;
     }
 
-    .childhood-card-tag {
+    .childhood-3d-slide.is-front {
+      border-color: #FFD27A;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, .92), 0 0 55px rgba(255, 143, 163, .5), 0 0 25px rgba(255, 210, 122, .5);
+    }
+
+    .childhood-slide-badge {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(30, 8, 16, .82);
-      border: 1px solid rgba(232, 180, 160, .45);
-      color: var(--gold-light);
-      font-size: .72rem;
-      font-weight: 700;
-      padding: .25rem .65rem;
-      border-radius: 999px;
-      backdrop-filter: blur(6px);
-    }
-
-    .childhood-card-body {
-      padding: 1.25rem 1.15rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .childhood-card-title {
-      font-size: 1.08rem;
-      font-weight: 800;
-      color: var(--gold-light);
-      margin-bottom: .5rem;
-      line-height: 1.25;
-    }
-
-    .childhood-card-desc {
-      font-size: .88rem;
-      line-height: 1.6;
-      color: #EDE2DB;
-      flex: 1;
-      margin-bottom: 1rem;
-    }
-
-    .childhood-card-foot {
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: .65rem;
-      border-top: 1px solid rgba(232, 180, 160, .15);
-      font-size: .75rem;
-      font-weight: 700;
+      padding: .55rem .95rem;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(24, 4, 12, .88), rgba(48, 10, 24, .75));
+      border: 1px solid rgba(232, 180, 160, .4);
+      backdrop-filter: blur(10px);
+      color: #FFF;
+      font-weight: 800;
+      font-size: .88rem;
+      letter-spacing: .02em;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .45s ease, transform .45s ease;
+      pointer-events: none;
     }
 
-    .childhood-card-foot .view-btn {
-      color: var(--gold-primary);
+    .childhood-3d-slide.is-front .childhood-slide-badge,
+    .childhood-3d-slide:hover .childhood-slide-badge {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .childhood-card-foot .heart-badge {
-      color: #FF8FA3;
+    .childhood-slide-badge span.tag-pill {
+      font-size: .72rem;
+      color: #FFD27A;
+      background: rgba(255, 210, 122, .15);
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 210, 122, .35);
     }
 
-    @media (max-width: 980px) {
-      .childhood-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .childhood-carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.4rem;
+      position: relative;
+      z-index: 15;
+    }
+
+    .childhood-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(232, 180, 160, .45);
+      background: rgba(42, 10, 22, .85);
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: transform .3s var(--ease-spring), background .25s, border-color .25s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .5);
+    }
+
+    .childhood-nav-btn:hover {
+      transform: scale(1.12);
+      border-color: #FFD27A;
+      background: rgba(90, 18, 42, .95);
+    }
+
+    .childhood-dots {
+      display: flex;
+      gap: .55rem;
+      align-items: center;
+    }
+
+    .childhood-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(232, 180, 160, .3);
+      border: none;
+      cursor: pointer;
+      transition: width .35s var(--ease-out-expo), background .35s;
+    }
+
+    .childhood-dot.active {
+      width: 28px;
+      background: linear-gradient(90deg, #FFD27A, #FF8FA3);
+    }
+
+    @media (max-width: 680px) {
+      .childhood-3d-stage {
+        height: 430px;
       }
-    }
-
-    @media (max-width: 540px) {
-      .childhood-cards-grid {
-        grid-template-columns: 1fr;
+      .childhood-3d-slide {
+        width: min(78vw, 300px);
       }
     }
 
@@ -4556,56 +4582,6 @@
             <span>✨ Scatter Petal Blessings</span>
           </button>
         </div>
-
-        <!-- The Grand Sanctum Scroll of Truth & Rhyming Poem -->
-        <div class="lotus-sanctum-scroll" id="lotus-scroll">
-          <div class="scroll-filigree-top">✦ ✦ ✦</div>
-          <div class="scroll-badge">A SPECIAL LETTER FROM MY HEART</div>
-          <h3 class="scroll-headline">To the Closest Person to My Heart</h3>
-
-          <div class="scroll-body">
-            <p class="scroll-para lead-para">
-              You are, and will always be, the closest person to my heart in this whole universe. Out of everyone in the
-              world, having you in my life means more to me than words can ever express. You know the real me, and you
-              have always stood by me with pure understanding.
-            </p>
-
-            <p class="scroll-para">
-              I have always admired you so deeply. Every single day, I wonder how you carry so much patience and gentle
-              grace. There were countless times when I got angry, lost my cool, or was difficult to handle. But you
-              never once treated me badly. You never answered anger with anger, and you never held a grudge. You always
-              met my storms with a calm, gentle heart and pure peace that completely humbled me.
-            </p>
-
-            <p class="scroll-para">
-              Sometimes my heart always searches for you wherever I am, and I just can't leave you alone. What makes you
-              so special is how pure and innocent your spirit is. In a world full of noise, your heart is completely
-              real, honest, and sweet beyond measure.
-            </p>
-
-            <p class="scroll-para">
-              And from the deepest corner of my heart, I am truly sorry for whatever times I got angry, reacted harshly,
-              or hurt you in any way. You never deserved any harsh words. No matter where life takes us, I promise you
-              that I will always be right there with you, walking beside you through everything.
-            </p>
-
-            <div class="scroll-poem-card">
-              <div class="poem-ornament">❝</div>
-              <p class="poem-line">When storms arose and patience broke, you stayed so calm and sweet,</p>
-              <p class="poem-line">You never answered fire with fire, nor treated me with heat.</p>
-              <p class="poem-line">My heart will always search for you, wherever paths may bend,</p>
-              <p class="poem-line">I'm sorry for the times I hurt, my promises I'll mend.</p>
-              <p class="poem-line">Through every joy and every cloud, I'll walk right by your side,</p>
-              <p class="poem-line">The closest person to my heart, my truest peace and guide.</p>
-              <div class="poem-ornament bottom">❞</div>
-            </div>
-
-            <div class="scroll-signature">
-              <span class="sig-prefix">Forever thankful for you and always with you,</span>
-              <span class="sig-name">Rakesh Kumar</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -4653,7 +4629,6 @@
 
     <div class="night-lamp-clothesline-section">
       <div style="text-align:center;margin-bottom:1.5rem">
-        <span class="hero-overline" style="color:#D9485F">COZY NIGHT LAMP GALLERY</span>
         <h3 class="section-headline gold-gradient-text" data-fin data-split
           style="font-size:clamp(1.8rem,3.8vw,2.8rem)">Hanging Polaroids &amp; Midnight Hangouts</h3>
         <p class="reveal" data-fin style="color:var(--text-muted);font-size:1.05rem;max-width:650px;margin:0 auto">
@@ -4712,111 +4687,70 @@
       </div>
     </div>
 
-    <!-- CHILDHOOD MEMORIES • FLOATING GALLERY -->
+    <!-- CHILDHOOD MEMORIES • DYNAMIC 3D ROTATING CAROUSEL -->
     <div class="childhood-floating-section" id="childhood-floating-section">
-      <div style="text-align:center;margin-bottom:2rem">
+      <div style="text-align:center;margin-bottom:1rem">
         <span class="hero-overline" style="color:var(--gold-primary)">TIMELESS MEMORIES • PURE INNOCENCE</span>
         <h3 class="section-headline gold-gradient-text" data-fin data-split
           style="font-size:clamp(1.8rem,3.8vw,2.8rem)">
-          Childhood Grace &amp; Divine Looks
+          Little Age Memories
         </h3>
-        <p class="reveal" data-fin style="color:var(--text-muted);font-size:1.05rem;max-width:700px;margin:0 auto">
-          Looking at you as a little girl, your beauty was truly divine—like an innocent angel sent from heaven to
-          brighten the whole universe.
-        </p>
-        <div class="floating-instruction-pill">✨ Floating Keepsakes • Tap any card to enlarge in high resolution</div>
+        <div class="floating-instruction-pill">✨ Click any photo to rotate or view full size</div>
       </div>
 
-      <!-- 4 Floating Cards Grid -->
-      <div class="childhood-cards-grid">
-        <!-- Card 1: Holding Lotuses -->
-        <div class="childhood-card float-card-1"
-          onclick="showLightbox('assets/gallery/divine/divine_04.jpg', 'My Timeless Little Goddess', '🌸 Sacred Lotuses & Light', 'Look at you in that yellow dress with the golden crown, holding fresh blooming lotuses in your little hands. Truly, your beauty has always been divine—even as a little child, you carried an innocent light and sweetness that outshines every flower in the world.')">
-          <div class="childhood-img-wrap">
-            <img src="assets/gallery/divine/divine_04.jpg" alt="Childhood photo holding lotuses" class="childhood-img">
-            <div class="childhood-card-aura"></div>
-            <span class="childhood-card-tag">🌸 Blooming Lotuses</span>
-          </div>
-          <div class="childhood-card-body">
-            <h4 class="childhood-card-title">My Timeless Little Goddess</h4>
-            <p class="childhood-card-desc">
-              Look at you in that yellow traditional dress with the golden crown, holding fresh blooming lotuses in your
-              little hands. Even as a child, your presence had an innocent grace straight from heaven, bringing peace
-              and light to everyone around you.
-            </p>
-            <div class="childhood-card-foot">
-              <span class="view-btn">🔍 View Full Image</span>
-              <span class="heart-badge">❤️ Pure Beauty</span>
+      <div class="childhood-3d-stage" id="childhood-3d-stage">
+        <div class="childhood-3d-rig" id="childhood-3d-rig">
+          <!-- Slide 0 -->
+          <div class="childhood-3d-slide" data-idx="0" data-pos="0"
+            onclick="handleChildhoodSlideClick(0, 'assets/gallery/divine/divine_04.jpg', 'Little Goddess', '🌸 Childhood Memory')">
+            <img src="assets/gallery/divine/divine_04.jpg" alt="Childhood photo 1" draggable="false">
+            <div class="childhood-slide-badge">
+              <span>Little Goddess</span>
+              <span class="tag-pill">🌸 01 / 04</span>
             </div>
           </div>
-        </div>
 
-        <!-- Card 2: Ornate Crown & Nath Portrait -->
-        <div class="childhood-card float-card-2"
-          onclick="showLightbox('assets/gallery/divine/divine_01.jpg', 'Purest Eyes in the World', '👑 Crown of Grace', 'That sweet golden crown, the traditional nose ring, and the garland—what truly captivates anyone is the sheer innocence in your eyes and that gentle, warm smile. Your beauty shines directly from the purest heart I know.')">
-          <div class="childhood-img-wrap">
-            <img src="assets/gallery/divine/divine_01.jpg" alt="Childhood photo with crown and nath"
-              class="childhood-img">
-            <div class="childhood-card-aura"></div>
-            <span class="childhood-card-tag">👑 Purest Innocence</span>
-          </div>
-          <div class="childhood-card-body">
-            <h4 class="childhood-card-title">Purest Eyes in the World</h4>
-            <p class="childhood-card-desc">
-              That ornate golden crown and the traditional nose ring framed the sweetest, most innocent face in the
-              world. Looking at those gentle eyes and warm smile, it's easy to see that you've always had a soul of pure
-              gold.
-            </p>
-            <div class="childhood-card-foot">
-              <span class="view-btn">🔍 View Full Image</span>
-              <span class="heart-badge">✨ Divine Aura</span>
+          <!-- Slide 1 -->
+          <div class="childhood-3d-slide" data-idx="1" data-pos="1"
+            onclick="handleChildhoodSlideClick(1, 'assets/gallery/divine/divine_01.jpg', 'Purest Innocence', '👑 Childhood Memory')">
+            <img src="assets/gallery/divine/divine_01.jpg" alt="Childhood photo 2" draggable="false">
+            <div class="childhood-slide-badge">
+              <span>Purest Innocence</span>
+              <span class="tag-pill">👑 02 / 04</span>
             </div>
           </div>
-        </div>
 
-        <!-- Card 3: Golden Trishul -->
-        <div class="childhood-card float-card-3"
-          onclick="showLightbox('assets/gallery/divine/divine_02.jpg', 'My Cute Little Protector', '🔱 Golden Trishul & Strength', 'Holding the golden trishul with such cute, fearless poise. A sweet little warrior with quiet strength on the outside, but with the softest, most loving heart on the inside.')">
-          <div class="childhood-img-wrap">
-            <img src="assets/gallery/divine/divine_02.jpg" alt="Childhood photo with golden trishul"
-              class="childhood-img">
-            <div class="childhood-card-aura"></div>
-            <span class="childhood-card-tag">🔱 Quiet Strength</span>
-          </div>
-          <div class="childhood-card-body">
-            <h4 class="childhood-card-title">My Cute Little Protector</h4>
-            <p class="childhood-card-desc">
-              Holding the golden trishul with so much cute dignity! You looked like a brave little protector with quiet
-              strength on the outside, but with the gentlest, sweetest heart on the inside that always cares for others.
-            </p>
-            <div class="childhood-card-foot">
-              <span class="view-btn">🔍 View Full Image</span>
-              <span class="heart-badge">🛡️ Sweet Courage</span>
+          <!-- Slide 2 -->
+          <div class="childhood-3d-slide" data-idx="2" data-pos="2"
+            onclick="handleChildhoodSlideClick(2, 'assets/gallery/divine/divine_02.jpg', 'Cute Little Protector', '🔱 Childhood Memory')">
+            <img src="assets/gallery/divine/divine_02.jpg" alt="Childhood photo 3" draggable="false">
+            <div class="childhood-slide-badge">
+              <span>Cute Little Protector</span>
+              <span class="tag-pill">🔱 03 / 04</span>
             </div>
           </div>
-        </div>
 
-        <!-- Card 4: Playful Tongue-out Expression -->
-        <div class="childhood-card float-card-4"
-          onclick="showLightbox('assets/gallery/divine/divine_03.jpg', 'Unstoppable Joy & Sweet Mischief', '✨ Playful Spark', 'Full of life, cute expressions, and playful mischief! Sticking your tongue out with that sparkling grin—you have always had that magical spark that instantly melts any sadness and brings pure joy to my world.')">
-          <div class="childhood-img-wrap">
-            <img src="assets/gallery/divine/divine_03.jpg" alt="Childhood photo playful expression"
-              class="childhood-img">
-            <div class="childhood-card-aura"></div>
-            <span class="childhood-card-tag">✨ Sweet Mischief</span>
-          </div>
-          <div class="childhood-card-body">
-            <h4 class="childhood-card-title">Unstoppable Joy &amp; Mischief</h4>
-            <p class="childhood-card-desc">
-              Playfully sticking your tongue out with that sparkling grin! Full of life and adorable mischief, this
-              photo proves your joyful spirit has always had the magic to make anyone laugh and forget every worry.
-            </p>
-            <div class="childhood-card-foot">
-              <span class="view-btn">🔍 View Full Image</span>
-              <span class="heart-badge">😄 Pure Joy</span>
+          <!-- Slide 3 -->
+          <div class="childhood-3d-slide" data-idx="3" data-pos="3"
+            onclick="handleChildhoodSlideClick(3, 'assets/gallery/divine/divine_03.jpg', 'Sweet Mischief', '✨ Childhood Memory')">
+            <img src="assets/gallery/divine/divine_03.jpg" alt="Childhood photo 4" draggable="false">
+            <div class="childhood-slide-badge">
+              <span>Sweet Mischief</span>
+              <span class="tag-pill">✨ 04 / 04</span>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="childhood-carousel-controls">
+        <button class="childhood-nav-btn" type="button" onclick="stepChildhoodCarousel(-1)" aria-label="Previous photo">❮</button>
+        <div class="childhood-dots" id="childhood-dots">
+          <button class="childhood-dot active" type="button" onclick="setChildhoodSlide(0)" aria-label="Slide 1"></button>
+          <button class="childhood-dot" type="button" onclick="setChildhoodSlide(1)" aria-label="Slide 2"></button>
+          <button class="childhood-dot" type="button" onclick="setChildhoodSlide(2)" aria-label="Slide 3"></button>
+          <button class="childhood-dot" type="button" onclick="setChildhoodSlide(3)" aria-label="Slide 4"></button>
+        </div>
+        <button class="childhood-nav-btn" type="button" onclick="stepChildhoodCarousel(1)" aria-label="Next photo">❯</button>
       </div>
     </div>
 
@@ -4995,7 +4929,7 @@
     /* =========================================================================
        A. CONFIG
        ========================================================================= */
-    const STORE_KEY = 'living_universe_config_v17';
+    const STORE_KEY = 'living_universe_config_v18';
     const BASE_CONFIG = {
       friendName: "Mrinalini", senderName: "Rakesh Kumar",
       headline: "Happiest Birthday, {name}!",
@@ -5021,7 +4955,10 @@
         { id: 2, title: "Always by My Side", location: "Best Friends", img: "assets/gallery/hangout/1000060625.jpg", desc: "Through good times and bad, you have always been there for me without hesitation.", hearts: 52 },
         { id: 3, title: "Pure Joy", location: "Candid Laugh", img: "assets/gallery/hangout/1000072230.jpg", desc: "A real, innocent laugh that shows just how sweet and genuine your heart is.", hearts: 39 },
         { id: 4, title: "Comfortable Silence", location: "Casual Day", img: "assets/gallery/hangout/1000072232.jpg", desc: "Walking together without any rush, just enjoying each other's company.", hearts: 64 },
-        { id: 5, title: "Unbreakable Bond", location: "Best Friends", img: "assets/gallery/hangout/1000072236.jpg", desc: "A reminder of how lucky I am to have a best friend who is so loyal, kind, and patient.", hearts: 57 }
+        { id: 5, title: "Unbreakable Bond", location: "Best Friends", img: "assets/gallery/hangout/1000072236.jpg", desc: "A reminder of how lucky I am to have a best friend who is so loyal, kind, and patient.", hearts: 57 },
+        { id: 6, title: "Framed With Love", location: "Sweetest Smile", img: "assets/gallery/hangout/hangout_06.jpg", desc: "Framing the brightest and sweetest smile in the room—every hangout with you turns into an unforgettable memory.", hearts: 72 },
+        { id: 7, title: "Under the Green Canopy", location: "Squad Hangout", img: "assets/gallery/hangout/hangout_07.jpg", desc: "Standing together under the sunny trees, sharing laughs and making memories that will stay with us forever.", hearts: 68 },
+        { id: 8, title: "By the Fountain", location: "Day Out Together", img: "assets/gallery/hangout/hangout_08.jpg", desc: "Sitting together by the blue fountain surrounded by blooming flowers—a peaceful, happy day with the best company.", hearts: 85 }
       ]
     };
     let CONFIG;
@@ -5040,7 +4977,7 @@
          6.2s          groove & flute drop in <-- the main page opens ON the beat drop
        ========================================================================= */
     const SONG = {
-      DROP: 6.2,          // second where the main beat lands = page reveal moment
+      DROP: 16.9,         // second where the intro stops (~15.5s-16.8s) and main beat restarts at 16.9s = page reveal moment
       WIPE_LEAD: 0.45,    // paper-wipe needs ~0.45s to cover the screen before the reveal
       VOLUME: 0.85
     };
@@ -5552,12 +5489,11 @@
     let isLotusBloomed = false, lotusPetalTimer = null;
 
     function toggleLotusBloom() {
-      const stage = el('lotus-stage'), lotus = el('celestial-lotus'), scroll = el('lotus-scroll'), btnText = el('lotus-btn-text'), blessBtn = el('lotus-bless-btn');
-      if (!lotus || !scroll) return;
+      const stage = el('lotus-stage'), lotus = el('celestial-lotus'), btnText = el('lotus-btn-text'), blessBtn = el('lotus-bless-btn');
+      if (!lotus) return;
       isLotusBloomed = !isLotusBloomed;
       safeBirthdaySound('playWhoosh');
       clearInterval(lotusPetalTimer);
-      clearTimeout(toggleLotusBloom._t);
 
       if (isLotusBloomed) {
         lotus.classList.add('is-bloomed');
@@ -5570,16 +5506,11 @@
         // Confetti burst with rose-gold & stardust colors
         fire({ particleCount: 75, spread: 85, origin: { y: 0.65 }, colors: ['#FFD27A', '#FF8FA3', '#FFE8DF', '#E8B4A0'] });
 
-        // Open scroll
-        toggleLotusBloom._t = setTimeout(() => {
-          scroll.classList.add('open');
-        }, 450);
-
-        // Open letter popup modal after 2.5 seconds (starts 2nd song while reading)
+        // Open letter popup modal after 2 seconds (starts 2nd song while reading)
         clearTimeout(lotusLetterTimer);
         lotusLetterTimer = setTimeout(() => {
           if (isLotusBloomed) openLotusLetterPopup();
-        }, 2500);
+        }, 2000);
 
         // Floating stardust lotus petals
         lotusPetalTimer = setInterval(() => {
@@ -5598,7 +5529,8 @@
         if (stage) stage.classList.remove('is-bloomed');
         if (btnText) btnText.innerHTML = '🌸 Awaken The Sacred Lotus';
         if (blessBtn) blessBtn.style.display = 'none';
-        scroll.classList.remove('open');
+        clearTimeout(lotusLetterTimer);
+        closeLotusLetterPopup();
       }
     }
 
@@ -6059,6 +5991,106 @@
     /* =========================================================================
        M. LIGHTBOX + CUSTOMIZER
        ========================================================================= */
+    /* =========================================================================
+       M0. CHILDHOOD DYNAMIC 3D ROTATING MEDIA CAROUSEL
+       ========================================================================= */
+    let childAngle = 0, childTargetAngle = null, childVel = -0.38;
+    let childHovered = false, childDragging = false, childLastX = 0, childLastY = 0, childMoved = 0;
+    let childTiltX = 10, childTiltZ = -9;
+
+    function setChildhoodSlide(idx) {
+      const target = -idx * 90;
+      // Find shortest angular path
+      let diff = ((target - childAngle) % 360 + 540) % 360 - 180;
+      childTargetAngle = childAngle + diff;
+    }
+    function stepChildhoodCarousel(dir) {
+      const curIdx = Math.round(-childAngle / 90);
+      setChildhoodSlide(curIdx + dir);
+    }
+    function handleChildhoodSlideClick(idx, img, title, tag) {
+      if (childMoved > 8) return;
+      showLightbox(img, title, tag, '');
+    }
+    function initChildhood3DCarousel() {
+      const stage = el('childhood-3d-stage');
+      if (!stage || stage._bound) return;
+      stage._bound = true;
+      stage.addEventListener('pointerdown', (e) => {
+        childDragging = true;
+        childMoved = 0;
+        childLastX = e.clientX;
+        childLastY = e.clientY;
+        childTargetAngle = null;
+        childVel = 0;
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!childDragging) return;
+        const dx = e.clientX - childLastX;
+        const dy = e.clientY - childLastY;
+        childLastX = e.clientX;
+        childLastY = e.clientY;
+        childMoved += Math.abs(dx) + Math.abs(dy);
+        childVel = dx * 0.42;
+        childAngle += childVel;
+        childTiltX = clamp(childTiltX - dy * 0.15, -25, 30);
+      });
+      window.addEventListener('pointerup', () => {
+        childDragging = false;
+      });
+      stage.addEventListener('mouseenter', () => { childHovered = true; });
+      stage.addEventListener('mouseleave', () => { childHovered = false; });
+    }
+    function tickChildhoodCarousel() {
+      const rig = el('childhood-3d-rig');
+      if (!rig) return;
+      initChildhood3DCarousel();
+      if (!childDragging) {
+        if (childTargetAngle !== null) {
+          childAngle = lerp(childAngle, childTargetAngle, 0.1);
+          if (Math.abs(childTargetAngle - childAngle) < 0.4) {
+            childAngle = childTargetAngle;
+            childTargetAngle = null;
+          }
+        } else {
+          const targetSpeed = childHovered ? -0.14 : -0.38;
+          childVel = lerp(childVel, targetSpeed, 0.05);
+          childAngle += childVel;
+        }
+        childTiltX = lerp(childTiltX, 10, 0.04);
+      }
+
+      rig.style.transform = `rotateZ(${childTiltZ}deg) rotateX(${childTiltX.toFixed(2)}deg)`;
+
+      const slides = rig.querySelectorAll('.childhood-3d-slide');
+      const dots = document.querySelectorAll('#childhood-dots .childhood-dot');
+      const radiusX = Math.min(window.innerWidth * 0.3, 250);
+      const radiusZ = 185;
+      const radiusY = 68;
+      let frontIdx = 0, maxZ = -9999;
+
+      slides.forEach((s, idx) => {
+        const deg = childAngle + idx * 90;
+        const rad = deg * Math.PI / 180;
+        const x = Math.sin(rad) * radiusX;
+        const z = Math.cos(rad) * radiusZ;
+        const y = -Math.sin(rad * 1.0) * radiusY;
+        const rotY = deg * 0.25;
+        const scale = 0.78 + ((z + radiusZ) / (2 * radiusZ)) * 0.3;
+        const normZ = (z + radiusZ) / (2 * radiusZ); // 0 (back) to 1 (front)
+
+        if (z > maxZ) { maxZ = z; frontIdx = idx; }
+
+        s.style.setProperty('transform', `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotateY(${(Math.sin(rad) * 22).toFixed(1)}deg) scale(${scale.toFixed(3)})`, 'important');
+        s.style.setProperty('z-index', String(Math.round(normZ * 20)));
+        s.style.setProperty('opacity', (0.55 + normZ * 0.45).toFixed(2));
+        s.style.setProperty('filter', `brightness(${(0.65 + normZ * 0.42).toFixed(2)})`);
+      });
+
+      slides.forEach((s, idx) => s.classList.toggle('is-front', idx === frontIdx));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === frontIdx));
+    }
+
     function showLightbox(img, title, time, story) {
       el('lightbox-image').src = img; el('lightbox-headline').textContent = title; el('lightbox-time').textContent = time; el('lightbox-story').textContent = story;
       el('flow-lightbox').classList.add('active');
@@ -6238,6 +6270,7 @@
       }
 
       tickPlanet();
+      tickChildhoodCarousel();
 
       // canvas - lightweight high-FPS rendering
       ctx.clearRect(0, 0, canvas.width, canvas.height);
